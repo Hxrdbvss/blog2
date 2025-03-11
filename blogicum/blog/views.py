@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from .models import Post
 
 def index(request):
-    """Главная страница со всеми постами."""
-    reversed_posts = list(reversed(posts))
-    #print("Reversed posts:", reversed_posts)  # Добавим вывод в консоль
+    posts = Post.objects.filter(is_published=True).order_by('-pub_date')
+    reversed_posts = posts[:5]  # Например, берём последние 5 постов
     context = {'posts': reversed_posts}
     return render(request, 'blog/index.html', context)
 

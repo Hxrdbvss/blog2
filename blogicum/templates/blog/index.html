@@ -45,19 +45,9 @@
         
         <!-- Проходим по всем постам -->
         {% for post in posts %}
-          <hr>
-          <article>
-            <ul>
-              <li>Место: {{ post.location }}</li>
-              <li>Дата: {{ post.date }}</li>
-              <li>Категория: <a href="{% url 'blog:category_posts' category_slug=post.category %}">{{ post.category }}</a></li>
-            </ul>
-            <p>{{ post.text|slice:":20" }}</p> <!-- Используем slice вместо truncatechars -->
-            <!-- Ссылка на полный текст поста -->
-            <a href="{% url 'blog:post_detail' id=post.id %}">Читать полный текст</a>
-          </article>
-        {% empty %}
-          <p>Нет постов для отображения.</p>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.text }}</p>
+          <small>{{ post.pub_date }}</small>
         {% endfor %}
       </div>
     </main>
