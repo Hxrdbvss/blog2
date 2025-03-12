@@ -5,9 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # STATIC settings
 STATIC_URL = '/static/'
-
-# Добавляем папку для статичных файлов в проекте
-STATICFILES_DIRS = [ BASE_DIR / 'static' , ] 
+STATICFILES_DIRS = [BASE_DIR / 'static',]
 
 # Прочие настройки
 SECRET_KEY = 'django-insecure-3@l&wu*-kppk%-j3)1+@#q&ye@-rfn=8d@l%d^$a@%m)3)7*4s'
@@ -71,10 +69,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-LANGUAGE_CODE = 'en-us'
+# Настройки локализации
+LANGUAGE_CODE = 'ru-ru'  # Русский язык
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+# Путь для хранения файлов переводов
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
