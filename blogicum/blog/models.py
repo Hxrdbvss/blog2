@@ -3,11 +3,10 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
 class Location(models.Model):
     name = models.CharField(
         max_length=256,
-        verbose_name='Название'
+        verbose_name='Название места'
     )
     is_published = models.BooleanField(
         default=True,
@@ -25,7 +24,6 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
-
 class Category(models.Model):
     title = models.CharField(
         max_length=256,
@@ -36,11 +34,13 @@ class Category(models.Model):
     )
     slug = models.SlugField(
         unique=True,
-        verbose_name='Идентификатор'
+        verbose_name='Идентификатор',
+        help_text='Идентификатор страницы для URL; разрешены символы латиницы, цифры, дефис и подчёркивание.'
     )
     is_published = models.BooleanField(
         default=True,
-        verbose_name='Опубликовано'
+        verbose_name='Опубликовано',
+        help_text='Снимите галочку, чтобы скрыть публикацию.'  # Добавлено
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -54,7 +54,6 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-
 class Post(models.Model):
     title = models.CharField(
         max_length=256,
@@ -64,12 +63,13 @@ class Post(models.Model):
         verbose_name='Текст'
     )
     pub_date = models.DateTimeField(
-        verbose_name='Дата и время публикации'
+        verbose_name='Дата и время публикации',
+        help_text='Если установить дату и время в будущем — можно делать отложенные публикации.'  # Добавлено
     )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name='Автор'
+        verbose_name='Автор публикации'
     )
     location = models.ForeignKey(
         Location,

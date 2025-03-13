@@ -70,7 +70,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Настройки локализации
-LANGUAGE_CODE = 'ru-ru'  # Русский язык
+LANGUAGE_CODE = 'ru-RU'  # Русский язык
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
